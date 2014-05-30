@@ -36,8 +36,8 @@ def readSB(filename):
 
 def getLatLon(data, t):
     index = bisect.bisect_left(data[0], t)
-    lat = (data[1][index]) * (data[0][index + 1] - t) + (data[1][index + 1]) * (t - data[0][index])
-    lon = (data[2][index]) * (data[0][index + 1] - t) + (data[2][index + 1]) * (t - data[0][index])
+    lat = ((data[1][index]) * (data[0][index + 1] - t) + (data[1][index + 1]) * (t - data[0][index])) / (data[0][index + 1] - data[0][index])
+    lon = ((data[2][index]) * (data[0][index + 1] - t) + (data[2][index + 1]) * (t - data[0][index])) / (data[0][index + 1] - data[0][index])
     return lat, lon
 
 def plot2DLine(T, x, y, xlabel = "longtitude", ylabel = "latitude", figname = "figure"):
